@@ -43,7 +43,8 @@ public class Main {
 
     private static void StartGame() {
         Scanner scanner = new Scanner(System.in);
-        console.setBackgroundColor(Ansi.BColor.BLACK);
+        console.setBackgroundColor(Ansi.BColor.NONE);
+        // console.setForegroundColor(Ansi.FColor.MAGENTA);
 
         console.print("\033[2J\033[;H");
         console.println("                  __");
@@ -58,7 +59,7 @@ public class Main {
         console.println("    \" \"\" \"\" \"\" \"");
 
         do {
-            console.setBackgroundColor(Ansi.BColor.YELLOW);
+            //console.setBackgroundColor(Ansi.BColor.YELLOW);
             console.setForegroundColor(Ansi.FColor.MAGENTA);
             console.println("");
             console.println("Player, it's your turn");
@@ -78,14 +79,19 @@ public class Main {
                 console.println("                 -\\  \\     /  /-");
                 console.println("                   \\  \\   /  /");
             } else {
-              console.setForegroundColor(Ansi.FColor.BLUE);
+                console.setForegroundColor(Ansi.FColor.BLUE);
             }
-            console.setBackgroundColor(Ansi.BColor.CYAN);
-            console.println(isHit ? "Yeah ! Nice hit !" : "Miss");
-            console.setBackgroundColor(Ansi.BColor.BLACK);
+            if(isHit){
+                console.setForegroundColor(Ansi.FColor.RED);
+                console.println("Yeah ! Nice hit !");
+            }
+            else{
+                console.setForegroundColor(Ansi.FColor.BLUE);
+                console.println("Miss");
+            }
             position = getRandomPosition();
             isHit = GameController.checkIsHit(myFleet, position);
-            console.setBackgroundColor(Ansi.BColor.YELLOW);
+            //console.setBackgroundColor(Ansi.BColor.YELLOW);
             console.println("");
             console.println(String.format("Computer shoot in %s%s and %s", position.getColumn(), position.getRow(), isHit ? "hit your ship !" : "miss"));
             console.setBackgroundColor(Ansi.BColor.BLACK);
@@ -105,6 +111,15 @@ public class Main {
             else {
                 console.setForegroundColor(Ansi.FColor.BLUE);
             }
+            if(isHit){
+                console.setForegroundColor(Ansi.FColor.RED);
+                console.println("Yeah ! Nice hit !");
+            }
+            else{
+                console.setForegroundColor(Ansi.FColor.BLUE);
+                console.println("Miss");
+            }
+            console.setForegroundColor(Ansi.FColor.NONE);
         } while (true);
     }
 
@@ -145,7 +160,7 @@ public class Main {
             console.println("");
             console.println(String.format("Please enter the positions for the"));
             console.setForegroundColor(Ansi.FColor.valueOf(ship.getColor().toString()));
-                    console.println(String.format("%s (size: %s)", ship.getName(), ship.getSize()));
+            console.println(String.format("%s (size: %s)", ship.getName(), ship.getSize()));
             console.setForegroundColor(Ansi.FColor.NONE);
             for (int i = 1; i <= ship.getSize(); i++) {
                 console.println(String.format("Enter position %s of %s (i.e A3):", i, ship.getSize()));
@@ -166,7 +181,7 @@ public class Main {
         enemyFleet.get(0).getPositions().add(new Position(Letter.B, 7));
         enemyFleet.get(0).getPositions().add(new Position(Letter.B, 8));
 
-        enemyFleet.get(1).getPositions().add(new Position(Letter.E, 6));
+        /* enemyFleet.get(1).getPositions().add(new Position(Letter.E, 6));
         enemyFleet.get(1).getPositions().add(new Position(Letter.E, 7));
         enemyFleet.get(1).getPositions().add(new Position(Letter.E, 8));
         enemyFleet.get(1).getPositions().add(new Position(Letter.E, 9));
@@ -180,6 +195,6 @@ public class Main {
         enemyFleet.get(3).getPositions().add(new Position(Letter.H, 8));
 
         enemyFleet.get(4).getPositions().add(new Position(Letter.C, 5));
-        enemyFleet.get(4).getPositions().add(new Position(Letter.C, 6));
+        enemyFleet.get(4).getPositions().add(new Position(Letter.C, 6));*/
     }
 }
