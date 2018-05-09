@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: game-controller-1.0.0-SNAPSHOT.jar JCDP-2.0.3.1.jar jansi-
+ 1.15.jar
+Main-Class: org.scrum.psd.battleship.ascii.Main
+
