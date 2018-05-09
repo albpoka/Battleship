@@ -33,10 +33,10 @@ public class GameController {
 
     public static List<Ship> initializeShips() {
         return Arrays.asList(
-                /*new Ship("Aircraft Carrier", 5, Color.MAGENTA),
+                new Ship("Aircraft Carrier", 5, Color.MAGENTA),
                 new Ship("Battleship", 4, Color.BLUE),
                 new Ship("Submarine", 3, Color.GREEN),
-                new Ship("Destroyer", 3, Color.RED),*/
+                new Ship("Destroyer", 3, Color.RED),
                 new Ship("Patrol Boat", 2, Color.GREEN));
     }
 

@@ -19,7 +19,7 @@ public class Main {
     public static void main(String[] args) {
         console = new ColoredPrinter.Builder(1, false).build();
 
-        console.setForegroundColor(Ansi.FColor.MAGENTA);
+        console.setForegroundColor(Ansi.FColor.WHITE);
         console.println("                                     |__");
         console.println("                                     |\\/");
         console.println("                                     ---");
@@ -93,7 +93,16 @@ public class Main {
             isHit = GameController.checkIsHit(myFleet, position);
             //console.setBackgroundColor(Ansi.BColor.YELLOW);
             console.println("");
-            console.println(String.format("Computer shoot in %s%s and %s", position.getColumn(), position.getRow(), isHit ? "hit your ship !" : "miss"));
+            if(isHit){
+                console.setForegroundColor(Ansi.FColor.RED);
+                console.println(String.format("Computer shoot in %s%s and %s", position.getColumn(), position.getRow(), "hit your ship !"));
+
+            }
+            else{
+                console.setForegroundColor(Ansi.FColor.BLUE);
+                console.println(String.format("Computer shoot in %s%s and %s", position.getColumn(), position.getRow(), "miss"));
+
+            }
             console.setBackgroundColor(Ansi.BColor.BLACK);
             if (isHit) {
                 beep();
@@ -110,14 +119,6 @@ public class Main {
             }
             else {
                 console.setForegroundColor(Ansi.FColor.BLUE);
-            }
-            if(isHit){
-                console.setForegroundColor(Ansi.FColor.RED);
-                console.println("Yeah ! Nice hit !");
-            }
-            else{
-                console.setForegroundColor(Ansi.FColor.BLUE);
-                console.println("Miss");
             }
             console.setForegroundColor(Ansi.FColor.NONE);
         } while (true);
@@ -156,19 +157,22 @@ public class Main {
         console.println("Please position your fleet (Game board has size from A to H and 1 to 8) :");
         console.setBackgroundColor(Ansi.BColor.BLACK);
         for (Ship ship : myFleet) {
-            console.setBackgroundColor(Ansi.BColor.CYAN);
+            console.setForegroundColor(Ansi.FColor.WHITE);
+            //console.setBackgroundColor(Ansi.BColor.CYAN);
             console.println("");
             console.println(String.format("Please enter the positions for the"));
+
             console.setForegroundColor(Ansi.FColor.valueOf(ship.getColor().toString()));
             console.println(String.format("%s (size: %s)", ship.getName(), ship.getSize()));
-            console.setForegroundColor(Ansi.FColor.NONE);
+            console.setForegroundColor(Ansi.FColor.WHITE);
+            console.setBackgroundColor(Ansi.BColor.BLACK);
             for (int i = 1; i <= ship.getSize(); i++) {
                 console.println(String.format("Enter position %s of %s (i.e A3):", i, ship.getSize()));
 
                 String positionInput = scanner.next();
                 ship.addPosition(positionInput);
             }
-            console.setBackgroundColor(Ansi.BColor.BLACK);
+
         }
     }
 
@@ -181,7 +185,7 @@ public class Main {
         enemyFleet.get(0).getPositions().add(new Position(Letter.B, 7));
         enemyFleet.get(0).getPositions().add(new Position(Letter.B, 8));
 
-        /* enemyFleet.get(1).getPositions().add(new Position(Letter.E, 6));
+        enemyFleet.get(1).getPositions().add(new Position(Letter.E, 6));
         enemyFleet.get(1).getPositions().add(new Position(Letter.E, 7));
         enemyFleet.get(1).getPositions().add(new Position(Letter.E, 8));
         enemyFleet.get(1).getPositions().add(new Position(Letter.E, 9));
@@ -195,6 +199,6 @@ public class Main {
         enemyFleet.get(3).getPositions().add(new Position(Letter.H, 8));
 
         enemyFleet.get(4).getPositions().add(new Position(Letter.C, 5));
-        enemyFleet.get(4).getPositions().add(new Position(Letter.C, 6));*/
+        enemyFleet.get(4).getPositions().add(new Position(Letter.C, 6));
     }
 }
